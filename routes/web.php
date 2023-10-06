@@ -1,10 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\{ProfileController, QuestionController};
 use Illuminate\Support\Facades\Route;
-
-
 
 Route::get('/', function () {
     return view('welcome');
