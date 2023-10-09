@@ -23,3 +23,21 @@ it('should be able to vote a question', function () {
     ]);
 
 });
+
+it('should be able to vote a question only once', function () {
+    //Arrange
+    $user = User::factory()->create();
+    $this->actingAs($user);
+    $question = Question::factory()->create();
+
+    //Act
+    post(Route('question.like', $question->id))
+        ->assertRedirect();
+
+    post(Route('question.like', $question->id))
+        ->assertRedirect();
+
+    //Assert
+    expect($user->votes()->where('question_id', $question->id)->count())->toBe(1);
+
+});
