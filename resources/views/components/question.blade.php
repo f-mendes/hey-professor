@@ -13,9 +13,9 @@
                 {{ $question->likes }}
             </button>
         </x-form>
-        <x-form :action="route('question.like', $question)">
+        <x-form :action="route('question.unlike', $question)">
             <button class="text-red-500">
-                <x-icons.thumbs-up class="w-5 h-6 hover:text-green-300 cursor-pointer" />
+                <x-icons.thumbs-up class="w-5 h-6 hover:text-red-300 cursor-pointer" />
                 {{ $question->unlikes }}
             </button>
         </x-form>
