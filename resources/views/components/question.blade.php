@@ -10,13 +10,13 @@
         <x-form :action="route('question.like', $question)">
             <button class="text-green-500">
                 <x-icons.thumbs-up class="w-5 h-6 hover:text-green-300 cursor-pointer" />
-                {{ $question->likes }}
+                {{ $question->votes_sum_like }}
             </button>
         </x-form>
         <x-form :action="route('question.unlike', $question)">
             <button class="text-red-500">
                 <x-icons.thumbs-up class="w-5 h-6 hover:text-red-300 cursor-pointer" />
-                {{ $question->unlikes }}
+                {{ $question->votes_sum_unlike }}
             </button>
         </x-form>
     </div>
