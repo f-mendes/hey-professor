@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -23,7 +22,7 @@ class QuestionController extends Controller
             ],
         ]);
 
-        Question::query()->create(
+        user()->questions()->create(
             [
                 'question' => $attributes['question'],
                 'draft'    => true,
