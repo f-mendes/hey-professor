@@ -18,6 +18,7 @@ class QuestionFactory extends Factory
     {
         return [
             'question' => $this->faker->realText(50) . '?',
+            'draft'    => $this->faker->boolean,
         ];
     }
 }
