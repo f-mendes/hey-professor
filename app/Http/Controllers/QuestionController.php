@@ -16,7 +16,7 @@ class QuestionController extends Controller
                 'min:10',
 
                 function (string $attribute, mixed $value, Closure $fail) {
-                    if (substr($value, -1) !== '?') {
+                    if (!str_ends_with($value, '?')) {
                         $fail('Are you sure that is a question? Please, check the question mark.');
                     }
                 },
