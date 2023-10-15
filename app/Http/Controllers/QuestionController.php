@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use Closure;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\{RedirectResponse, Request};
 
 class QuestionController extends Controller
 {
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function index(): View
+    {
+        $questions = user()->questions()->get();
+
+        return view('question.index', compact('questions'));
+    }
+
+    public function store(Request $request): RedirectResponse
     {
         $attributes = $request->validate([
             'question' => [
@@ -30,7 +38,7 @@ class QuestionController extends Controller
         );
 
         //return redirect()->route('dashboard');
-        return to_route('dashboard');
+        return back();
 
     }
 }
