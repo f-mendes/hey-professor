@@ -85,3 +85,13 @@ it('should create as a draft all the time', function () {
     ]);
 
 });
+
+test('only authenticate user can create a question', function () {
+
+    $request = post(route('question.store'), [
+        'question' => str_repeat('*', 260) . '?',
+    ]);
+
+    $request->assertRedirect(route('login'));
+
+});
