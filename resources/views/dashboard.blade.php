@@ -7,8 +7,8 @@
 
     <x-container>
         <div class="dark:text-gray-400 space-y-4">
-            @foreach ($questions as $question)
-                <x-question :question="$question" />
+            @foreach($questions as $item)
+                <x-question :question="$item" />
             @endforeach
         </div>
     </x-container>
