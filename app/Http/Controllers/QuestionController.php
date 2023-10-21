@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Closure;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\{RedirectResponse, Request};
 
 class QuestionController extends Controller
 {
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function index(): View
+    {
+        $questions = user()->questions()->get();
+
+        return view('question.index', compact('questions'));
+    }
+
+    public function store(Request $request): RedirectResponse
     {
         $attributes = $request->validate([
             'question' => [
@@ -23,10 +31,24 @@ class QuestionController extends Controller
             ],
         ]);
 
-        Question::query()->create($attributes);
+        user()->questions()->create(
+            [
+                'question' => $attributes['question'],
+                'draft'    => true,
+            ]
+        );
 
         //return redirect()->route('dashboard');
-        return to_route('dashboard');
+        return back();
 
+    }
+
+    public function destroy(Question $question): RedirectResponse
+    {
+        $this->authorize('destroy', $question);
+
+        $question->delete();
+
+        return back();
     }
 }

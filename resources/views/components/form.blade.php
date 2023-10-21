@@ -1,22 +1,21 @@
 @props([
     'action',
-    'put' => false,
-    'post' => false,
-    'delete' => false,
-    'patch' => false,    
+    'post' => null,
+    'put' => null,
+    'delete' => null
 ])
 
-<form action="{{$action}}" method="post">
+<form action="{{ $action }}" method="post" {{ $attributes }} >
     @csrf
+
     @if($put)
-        @method('put')
-    @endif
-    @if($patch)
-        @method('patch')
-    @endif
-    @if($delete)
-        @method('delete')
+        @method('PUT')
     @endif
 
-    {{$slot}}
+    @if($delete)
+        @method('DELETE')
+    @endif
+
+    {{ $slot }}
+
 </form>

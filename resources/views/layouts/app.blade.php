@@ -40,6 +40,5 @@
                 document.documentElement.classList.remove('dark')
             }
         </script>
-        
     </body>
 </html>
